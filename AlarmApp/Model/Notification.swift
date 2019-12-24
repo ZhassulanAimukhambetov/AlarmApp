@@ -16,7 +16,6 @@ class Notification: NSObject, UNUserNotificationCenterDelegate {
     func requestAutorization() {
         notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
             print("Permission granted: \(granted)")
-            
             guard granted else { return }
             self.getNotificationSettings()
         }
@@ -34,7 +33,7 @@ class Notification: NSObject, UNUserNotificationCenterDelegate {
         
         content.title = "ALARM"
         content.body = alarm.date.getAlarmIdentifier(format: "HH:mm")
-        content.sound = UNNotificationSound.default
+        content.sound = UNNotificationSound.init(named: UNNotificationSoundName("alarm.mp3"))
         let calendar = Calendar.current
         
         var triggerDate = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: alarm.date)

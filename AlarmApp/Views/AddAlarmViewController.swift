@@ -12,35 +12,31 @@ class AddAlarmViewController: UITableViewController {
 
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    var viewModel = AlarmViewModel()
-    var isEditMode = false
-    var date: Date!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        viewModel.getAlarms()
-        configureNavigationBar()
-    }
-    
-    func configureNavigationBar() {
-        if isEditMode {
-            navigationItem.leftBarButtonItem = nil
-            navigationController?.title = "Edit Alarm"
-            datePicker.date = date
+    var viewModel: AlarmViewModelProtocol! {
+        didSet {
+            viewModel.getAlarms()
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel = AlarmViewModel()
+        tableView.tableFooterView = UIView()
+        configureDatePicker()
+    }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        let str = [String]()
-        UserDefaults.standard.set(str, forKey: "alarms")
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        print("save")
         let date = self.datePicker.date
         self.viewModel.saveAlarms(date: date)
         dismiss(animated: true, completion: nil)
+    }
+    
+    func configureDatePicker() {
+        datePicker.backgroundColor = .darkGray
+        datePicker.setValue(UIColor.white, forKey: "textColor")
     }
 }

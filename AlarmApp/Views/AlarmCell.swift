@@ -12,8 +12,8 @@ class AlarmCell: UITableViewCell {
 
     @IBOutlet weak var alarmLabel: UILabel!
     
-    func configureCell(viewModel: AlarmViewModel, indexPath: IndexPath) {
-        alarmLabel.text = viewModel.cellText(indexPath: indexPath)
+    func configureCell(viewModel: AlarmViewModelProtocol, indexPath: IndexPath) {
+        alarmLabel.text = viewModel.getAlarmText(indexPath: indexPath)
     }
 
 }

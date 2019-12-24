@@ -8,17 +8,15 @@
 
 import Foundation
 
-class AlarmViewModel {
+class AlarmViewModel: AlarmViewModelProtocol {
     
-    let notification = Notification()
     var alarms = [Alarm]()
-    var mode: Mode?
     
     func numberOfRows() -> Int {
         return alarms.count
     }
     
-    func cellText(indexPath: IndexPath) -> String {
+    func getAlarmText(indexPath: IndexPath) -> String {
         let date = alarms[indexPath.row].date
         return date.getAlarmIdentifier(format: "HH:mm")
     }
@@ -27,6 +25,8 @@ class AlarmViewModel {
         let alarm = alarms[indexPath.row]
         return alarm.date
     }
+    
+    private let notification = Notification()
     
     func getAlarms() {
         alarms.removeAll()
@@ -50,6 +50,18 @@ class AlarmViewModel {
             identifiers.append(alarm.identifier)
         }
         
+        UserDefaults.standard.set(identifiers, forKey: "alarms")
+    }
+    
+    func deleteAlarm(indexPath: IndexPath) {
+        let identifier = alarms[indexPath.row].identifier
+        notification.notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
+        
+        alarms.remove(at: indexPath.row)
+        var identifiers = [String]()
+        for alarm in alarms {
+            identifiers.append(alarm.identifier)
+        }
         UserDefaults.standard.set(identifiers, forKey: "alarms")
     }
 }

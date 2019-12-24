@@ -12,28 +12,22 @@ class AlarmListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel =  AlarmViewModel()
+    var viewModel: AlarmViewModelProtocol! {
+        didSet {
+            viewModel.getAlarms()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getAlarms()
+        viewModel = AlarmViewModel()
+        tableView.tableFooterView = UIView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         viewModel.getAlarms()
         tableView.reloadData()
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "edit" {
-            let editAlarmVC = segue.destination as! AddAlarmViewController
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            editAlarmVC.isEditMode = true
-            editAlarmVC.date = viewModel.getAlarmDate(indexPath: indexPath)
-        }
-    }
-    
-    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {}
 }
 
 extension AlarmListViewController: UITableViewDataSource {
@@ -45,6 +39,16 @@ extension AlarmListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell") as! AlarmCell
         cell.configureCell(viewModel: viewModel, indexPath: indexPath)
         return cell
+    }
+}
+
+extension AlarmListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (_, _) in
+            self.viewModel.deleteAlarm(indexPath: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .left)
+        }
+        return [deleteAction]
     }
 }
 

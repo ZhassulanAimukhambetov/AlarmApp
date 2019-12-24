@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0117B2923B29AA7002C514D /* alarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0117B2823B29AA7002C514D /* alarm.mp3 */; };
 		F027D30323B146F700E34FA2 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F027D30223B146F700E34FA2 /* Notification.swift */; };
-		F027D30723B152AB00E34FA2 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F027D30623B152AB00E34FA2 /* Mode.swift */; };
+		F0B6B4EC23B285E000DDB9CF /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6B4EB23B285E000DDB9CF /* Extension.swift */; };
+		F0B6B4EE23B2862F00DDB9CF /* AlarmViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6B4ED23B2862F00DDB9CF /* AlarmViewModelProtocol.swift */; };
 		F0EE4FBA23B1331800C50283 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EE4FB923B1331800C50283 /* AppDelegate.swift */; };
 		F0EE4FBC23B1331800C50283 /* AlarmListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EE4FBB23B1331800C50283 /* AlarmListViewController.swift */; };
 		F0EE4FBF23B1331800C50283 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0EE4FBD23B1331800C50283 /* Main.storyboard */; };
@@ -21,8 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F0117B2823B29AA7002C514D /* alarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm.mp3; sourceTree = "<group>"; };
 		F027D30223B146F700E34FA2 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		F027D30623B152AB00E34FA2 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
+		F0B6B4EB23B285E000DDB9CF /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		F0B6B4ED23B2862F00DDB9CF /* AlarmViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModelProtocol.swift; sourceTree = "<group>"; };
 		F0EE4FB623B1331800C50283 /* AlarmApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0EE4FB923B1331800C50283 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0EE4FBB23B1331800C50283 /* AlarmListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +56,7 @@
 			children = (
 				F0EE4FCD23B1349C00C50283 /* Alarm.swift */,
 				F027D30223B146F700E34FA2 /* Notification.swift */,
-				F027D30623B152AB00E34FA2 /* Mode.swift */,
+				F0B6B4EB23B285E000DDB9CF /* Extension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -60,6 +64,7 @@
 		F027D2FE23B1467B00E34FA2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F0B6B4ED23B2862F00DDB9CF /* AlarmViewModelProtocol.swift */,
 				F0EE4FCF23B138D900C50283 /* AlarmViewModel.swift */,
 			);
 			path = ViewModel;
@@ -81,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				F0EE4FC023B1331A00C50283 /* Assets.xcassets */,
+				F0117B2823B29AA7002C514D /* alarm.mp3 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -180,6 +186,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0117B2923B29AA7002C514D /* alarm.mp3 in Resources */,
 				F0EE4FC423B1331A00C50283 /* LaunchScreen.storyboard in Resources */,
 				F0EE4FC123B1331A00C50283 /* Assets.xcassets in Resources */,
 				F0EE4FBF23B1331800C50283 /* Main.storyboard in Resources */,
@@ -195,12 +202,13 @@
 			files = (
 				F0EE4FCC23B1343500C50283 /* AddAlarmViewController.swift in Sources */,
 				F0EE4FBC23B1331800C50283 /* AlarmListViewController.swift in Sources */,
-				F027D30723B152AB00E34FA2 /* Mode.swift in Sources */,
 				F0EE4FBA23B1331800C50283 /* AppDelegate.swift in Sources */,
 				F027D30323B146F700E34FA2 /* Notification.swift in Sources */,
 				F0EE4FCE23B1349C00C50283 /* Alarm.swift in Sources */,
 				F0EE4FD023B138D900C50283 /* AlarmViewModel.swift in Sources */,
 				F0EE4FD223B13B2A00C50283 /* AlarmCell.swift in Sources */,
+				F0B6B4EE23B2862F00DDB9CF /* AlarmViewModelProtocol.swift in Sources */,
+				F0B6B4EC23B285E000DDB9CF /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +357,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FRVXASC334;
 				INFOPLIST_FILE = "AlarmApp/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -367,6 +376,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FRVXASC334;
 				INFOPLIST_FILE = "AlarmApp/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

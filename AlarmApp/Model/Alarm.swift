@@ -14,19 +14,3 @@ struct Alarm {
         return date.getAlarmIdentifier()
     }
 }
-
-extension Date {
-    func getAlarmIdentifier(format: String = "yyyy.MM.dd HH:mm") -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = format
-        return formatter.string(from: self)
-    }
-}
-
-extension String {
-    func getAlarmDate() -> Date? {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd HH:mm"
-        return formatter.date(from: self)
-    }
-}
