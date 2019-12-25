@@ -14,9 +14,7 @@ extension Date {
         formatter.dateFormat = format
         return formatter.string(from: self)
     }
-}
-
-extension Date {
+    
     init(from dateString: String) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd HH:mm"
