@@ -42,7 +42,7 @@ class AlarmViewModel: AlarmViewModelProtocol {
     func addAlarms(date: Date) {
         let alarm = Alarm(date: date)
         notification.scheduleNotification(alarm: alarm)
-        alarms.append(alarm)
+        alarms.insert(alarm, at: 0)
         saveAlarms()
     }
     
@@ -59,7 +59,6 @@ class AlarmViewModel: AlarmViewModelProtocol {
         for alarm in alarms {
             identifiers.append(alarm.identifier)
         }
-        
         UserDefaults.standard.set(identifiers, forKey: "alarms")
     }
 }

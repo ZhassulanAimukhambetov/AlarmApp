@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmListViewController: UIViewController, AlarmViewModelDelegate {
+class AlarmListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -27,11 +27,6 @@ class AlarmListViewController: UIViewController, AlarmViewModelDelegate {
             addAlarmVC.viewModelDelegate = self
             addAlarmVC.viewModel = viewModel
         }
-    }
-    
-    func passViewModel(viewModel: AlarmViewModelProtocol) {
-        self.viewModel = viewModel
-        tableView.reloadData()
     }
 }
 
@@ -55,6 +50,13 @@ extension AlarmListViewController: UITableViewDelegate {
             tableView.deleteRows(at: [indexPath], with: .left)
         }
         return [deleteAction]
+    }
+}
+//MARK: - AlarmViewModelDelegate
+extension AlarmListViewController: AlarmViewModelDelegate {
+    func passViewModel(viewModel: AlarmViewModelProtocol) {
+        self.viewModel = viewModel
+        tableView.reloadData()
     }
 }
 
