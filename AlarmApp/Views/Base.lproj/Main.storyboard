@@ -67,7 +67,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Pba-2s-pa9">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="2ro-tg-MDo" kind="show" id="9Hp-Dy-oA3"/>
+                                <segue destination="2ro-tg-MDo" kind="show" identifier="addAlarm" id="9Hp-Dy-oA3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -82,7 +82,7 @@
         <!--Add Alarm View Controller-->
         <scene sceneID="Zjk-So-Cnx">
             <objects>
-                <tableViewController modalPresentationStyle="fullScreen" id="eu8-NK-c0S" customClass="AddAlarmViewController" customModule="AlarmApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="eu8-NK-c0S" customClass="AddAlarmViewController" customModule="AlarmApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dsh-ZY-4xy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -162,7 +162,7 @@
         <!--Navigation Controller-->
         <scene sceneID="iJD-4E-AuL">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="2ro-tg-MDo" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2ro-tg-MDo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Qiu-D3-hxx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="cRh-oU-fNa">

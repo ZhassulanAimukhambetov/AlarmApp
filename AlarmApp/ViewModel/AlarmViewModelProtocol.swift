@@ -12,10 +12,11 @@ protocol AlarmViewModelProtocol {
     var alarms: [Alarm] { get }
     
     func numberOfRows() -> Int
-    func getAlarmText(indexPath: IndexPath) -> String
+    func getAlarmText(at indexPath: IndexPath) -> String
     func getAlarmDate(indexPath: IndexPath) -> Date
     
     func getAlarms()
     func addAlarms(date: Date)
     func deleteAlarm(indexPath: IndexPath)
 }
+

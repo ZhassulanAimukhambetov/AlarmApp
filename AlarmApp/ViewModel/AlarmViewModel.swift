@@ -16,7 +16,7 @@ class AlarmViewModel: AlarmViewModelProtocol {
         return alarms.count
     }
     
-    func getAlarmText(indexPath: IndexPath) -> String {
+    func getAlarmText(at indexPath: IndexPath) -> String {
         let date = alarms[indexPath.row].date
         return date.string(format: "HH:mm")
     }
@@ -29,10 +29,9 @@ class AlarmViewModel: AlarmViewModelProtocol {
     private let notification = AlarmNotification()
     
     func getAlarms() {
-        alarms.removeAll()
-        
         guard let identifiers = UserDefaults.standard.stringArray(forKey: "alarms") else { return }
         
+        alarms.removeAll()
         for identifier in identifiers {
             let date = Date(from: identifier)
             let alarm = Alarm(date: date)
@@ -52,11 +51,7 @@ class AlarmViewModel: AlarmViewModelProtocol {
         notification.notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
         
         alarms.remove(at: indexPath.row)
-        var identifiers = [String]()
-        for alarm in alarms {
-            identifiers.append(alarm.identifier)
-        }
-        UserDefaults.standard.set(identifiers, forKey: "alarms")
+        saveAlarms()
     }
     
     private func saveAlarms() {

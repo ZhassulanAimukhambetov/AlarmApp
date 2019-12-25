@@ -12,15 +12,11 @@ class AddAlarmViewController: UITableViewController {
 
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    var viewModel: AlarmViewModelProtocol! {
-        didSet {
-            viewModel.getAlarms()
-        }
-    }
+    var viewModel: AlarmViewModelProtocol!
+    var viewModelDelegate: AlarmViewModelDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = AlarmViewModel()
         tableView.tableFooterView = UIView()
         configureDatePicker()
     }
@@ -32,6 +28,7 @@ class AddAlarmViewController: UITableViewController {
     @IBAction func saveButtonTapped(_ sender: Any) {
         let date = self.datePicker.date
         self.viewModel.addAlarms(date: date)
+        viewModelDelegate?.passViewModel(viewModel: self.viewModel)
         dismiss(animated: true, completion: nil)
     }
     

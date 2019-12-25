@@ -8,24 +8,29 @@
 
 import UIKit
 
-class AlarmListViewController: UIViewController {
-    
+class AlarmListViewController: UIViewController, AlarmViewModelDelegate {
+
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel: AlarmViewModelProtocol! {
-        didSet {
-            viewModel.getAlarms()
-        }
-    }
+    var viewModel: AlarmViewModelProtocol = AlarmViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = AlarmViewModel()
+        viewModel.getAlarms()
         tableView.tableFooterView = UIView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        viewModel.getAlarms()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addAlarm" {
+            let navigationController = segue.destination as! UINavigationController
+            let addAlarmVC = navigationController.topViewController as! AddAlarmViewController
+            addAlarmVC.viewModelDelegate = self
+            addAlarmVC.viewModel = viewModel
+        }
+    }
+    
+    func passViewModel(viewModel: AlarmViewModelProtocol) {
+        self.viewModel = viewModel
         tableView.reloadData()
     }
 }
