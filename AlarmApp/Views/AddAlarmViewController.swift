@@ -31,7 +31,7 @@ class AddAlarmViewController: UITableViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         let date = self.datePicker.date
-        self.viewModel.saveAlarms(date: date)
+        self.viewModel.addAlarms(date: date)
         dismiss(animated: true, completion: nil)
     }
     

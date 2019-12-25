@@ -30,6 +30,7 @@ class AlarmListViewController: UIViewController {
     }
 }
 
+//MARK: - UITableViewDataSource
 extension AlarmListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
@@ -41,7 +42,7 @@ extension AlarmListViewController: UITableViewDataSource {
         return cell
     }
 }
-
+//MARK: - UITableViewDelegate
 extension AlarmListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (_, _) in

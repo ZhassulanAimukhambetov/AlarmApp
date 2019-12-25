@@ -9,7 +9,7 @@
 import Foundation
 import UserNotifications
 
-class Notification: NSObject, UNUserNotificationCenterDelegate {
+class AlarmNotification: NSObject, UNUserNotificationCenterDelegate {
     
     let notificationCenter = UNUserNotificationCenter.current()
     
@@ -32,13 +32,14 @@ class Notification: NSObject, UNUserNotificationCenterDelegate {
         let content = UNMutableNotificationContent()
         
         content.title = "ALARM"
-        content.body = alarm.date.getAlarmIdentifier(format: "HH:mm")
+        content.body = alarm.date.string(format: "HH:mm")
         content.sound = UNNotificationSound.init(named: UNNotificationSoundName("alarm.mp3"))
         let calendar = Calendar.current
         
         var triggerDate = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: alarm.date)
         if alarm.date <= Date(){
-            triggerDate.day = triggerDate.day! + 1
+            guard let triggerDateDay = triggerDate.day else { return }
+            triggerDate.day = triggerDateDay + 1
         }
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
         

@@ -11,6 +11,6 @@ import Foundation
 struct Alarm {
     let date: Date
     var identifier: String {
-        return date.getAlarmIdentifier()
+        return date.string()
     }
 }

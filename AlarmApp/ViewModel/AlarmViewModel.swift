@@ -18,7 +18,7 @@ class AlarmViewModel: AlarmViewModelProtocol {
     
     func getAlarmText(indexPath: IndexPath) -> String {
         let date = alarms[indexPath.row].date
-        return date.getAlarmIdentifier(format: "HH:mm")
+        return date.string(format: "HH:mm")
     }
     
     func getAlarmDate(indexPath: IndexPath) -> Date {
@@ -26,7 +26,7 @@ class AlarmViewModel: AlarmViewModelProtocol {
         return alarm.date
     }
     
-    private let notification = Notification()
+    private let notification = AlarmNotification()
     
     func getAlarms() {
         alarms.removeAll()
@@ -34,23 +34,17 @@ class AlarmViewModel: AlarmViewModelProtocol {
         guard let identifiers = UserDefaults.standard.stringArray(forKey: "alarms") else { return }
         
         for identifier in identifiers {
-            guard let date = identifier.getAlarmDate() else { return }
+            let date = Date(from: identifier)
             let alarm = Alarm(date: date)
             alarms.append(alarm)
         }
     }
     
-    func saveAlarms(date: Date) {
+    func addAlarms(date: Date) {
         let alarm = Alarm(date: date)
         notification.scheduleNotification(alarm: alarm)
         alarms.append(alarm)
-        
-        var identifiers = [String]()
-        for alarm in alarms {
-            identifiers.append(alarm.identifier)
-        }
-        
-        UserDefaults.standard.set(identifiers, forKey: "alarms")
+        saveAlarms()
     }
     
     func deleteAlarm(indexPath: IndexPath) {
@@ -62,6 +56,15 @@ class AlarmViewModel: AlarmViewModelProtocol {
         for alarm in alarms {
             identifiers.append(alarm.identifier)
         }
+        UserDefaults.standard.set(identifiers, forKey: "alarms")
+    }
+    
+    private func saveAlarms() {
+        var identifiers = [String]()
+        for alarm in alarms {
+            identifiers.append(alarm.identifier)
+        }
+        
         UserDefaults.standard.set(identifiers, forKey: "alarms")
     }
 }

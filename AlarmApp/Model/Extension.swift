@@ -9,17 +9,17 @@
 import Foundation
 
 extension Date {
-    func getAlarmIdentifier(format: String = "yyyy.MM.dd HH:mm") -> String {
+    func string(format: String = "yyyy.MM.dd HH:mm") -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         return formatter.string(from: self)
     }
 }
 
-extension String {
-    func getAlarmDate() -> Date? {
+extension Date {
+    init(from dateString: String) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd HH:mm"
-        return formatter.date(from: self)
+        self = formatter.date(from: dateString) ?? Date()
     }
 }

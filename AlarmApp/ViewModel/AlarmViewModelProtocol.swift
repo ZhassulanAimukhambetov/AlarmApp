@@ -16,6 +16,6 @@ protocol AlarmViewModelProtocol {
     func getAlarmDate(indexPath: IndexPath) -> Date
     
     func getAlarms()
-    func saveAlarms(date: Date)
+    func addAlarms(date: Date)
     func deleteAlarm(indexPath: IndexPath)
 }
